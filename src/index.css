@@ -1,0 +1,45 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-brand-navy: #0B2545;
+  --color-brand-blue: #1E5AA8;
+  --color-brand-green: #0E8F4F;
+  --color-brand-gold: #F2B705;
+  --color-brand-bg: #FAFAF9;
+  --color-brand-ink: #16212B;
+  --color-brand-muted: #5B6B7A;
+
+  --color-selo-ouro: #F5C451;
+  --color-selo-prata: #94A3B8;
+  --color-selo-bronze: #B08968;
+  --color-selo-progresso: #CBD5E1;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-green);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
