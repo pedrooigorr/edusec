@@ -128,7 +128,7 @@ function MapaTermometroExplicacao() {
           <Link to="/plataforma" className="inline-flex items-center gap-2 rounded-full bg-brand-gold px-8 py-4 font-bold uppercase text-brand-navy hover:brightness-95 transition">
             Ver o mapa completo<ArrowRight size={18} />
           </Link>
-          <p className="text-xs text-white/50 mt-3">Em breve: mapa interativo com dados reais de cada escola.</p>
+          <p className="text-xs text-white/50 mt-3">Dados ilustrativos. O mapa interativo utiliza dados simulados para demonstração do protótipo.</p>
         </div>
       </div>
     </section>

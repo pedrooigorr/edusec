@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Search, Thermometer, Settings, MessageSquarePlus, PieChart } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 import GraficoBarrasCategorias from "./GraficoBarrasCategorias";
 import GraficoPizzaRisco from "./GraficoPizzaRisco";
 import AlertasDiagnostico from "./AlertasDiagnostico";
@@ -8,6 +10,7 @@ import FormularioFeedback from "./FormularioFeedback";
 
 function PainelDadosEscola({ escola, medias, distribuicaoRisco, alertas }) {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const { podeResponderFeedback } = useAuth();
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 space-y-12">
@@ -52,7 +55,16 @@ function PainelDadosEscola({ escola, medias, distribuicaoRisco, alertas }) {
         <PlanoDeAcao alertas={alertas} />
       </div>
 
-      {!mostrarFormulario ? (
+      {!podeResponderFeedback ? (
+        <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center">
+          <p className="text-sm text-slate-600 mb-3">
+            Você está acessando como <strong>Visitante</strong> e pode apenas visualizar os dados.
+          </p>
+          <Link to="/login" className="inline-flex items-center gap-2 rounded-lg bg-brand-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors">
+            Entrar como aluno ou professor
+          </Link>
+        </div>
+      ) : !mostrarFormulario ? (
         <div className="flex justify-center">
           <button onClick={() => setMostrarFormulario(true)} className="inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 text-base font-semibold text-white hover:bg-emerald-700 transition-colors">
             <MessageSquarePlus size={18} />Responder feedback
