@@ -82,7 +82,7 @@ function MapaTermometroExplicacao() {
               <h3 className="font-display text-lg font-bold">Mapa da proteção</h3>
             </div>
             <p className="text-white/75 text-sm leading-relaxed mb-6">
-              Veja, região por região, como está o ambiente digital das escolas do Brasil e onde a atenção é mais urgente.
+              Veja, cidade por cidade, como está o ambiente digital das escolas do Ceará e onde a atenção é mais urgente.
             </p>
             <div className="mt-auto flex items-center justify-center h-40">
               <img src="/mapa-simples.png" alt="Ilustração do mapa do Brasil com marcadores coloridos por nível de selo" className="h-full w-auto object-contain" />

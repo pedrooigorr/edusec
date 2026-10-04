@@ -1,6 +1,7 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon, useMap } from "react-leaflet";
 import { useEffect } from "react";
 import { escolas } from "../data/escolas";
+import { contornoCeara, anelExternoMascara } from "../data/cearaBoundary";
 import L from "leaflet";
 
 const cores = {
@@ -34,7 +35,7 @@ function CentralizarEscola({ escola }) {
   const map = useMap();
   useEffect(() => {
     if (escola) {
-      map.flyTo([escola.lat, escola.lng], 8, { duration: 0.8 });
+      map.flyTo([escola.lat, escola.lng], 9, { duration: 0.8 });
     }
   }, [escola, map]);
   return null;
@@ -42,10 +43,24 @@ function CentralizarEscola({ escola }) {
 
 function MapaInterativo({ escolaSelecionadaId, onSelecionar, escolaParaCentralizar }) {
   return (
-    <MapContainer center={[-14.235, -51.9253]} zoom={4} style={{ height: "100%", width: "100%", minHeight: "480px" }}>
+    <MapContainer center={[-5.2, -39.3]} zoom={7} style={{ height: "100%", width: "100%", minHeight: "480px" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+
+      {/* Máscara: cobre tudo fora do Ceará com a cor de fundo do mapa */}
+      <Polygon
+        positions={[anelExternoMascara, contornoCeara]}
+        pathOptions={{ color: "transparent", fillColor: "#eef2f7", fillOpacity: 1, stroke: false }}
+      />
+
+      {/* Linha do contorno do estado, por cima da máscara */}
+      <Polygon
+        positions={contornoCeara}
+        pathOptions={{ color: "#0E8F4F", weight: 2, fillOpacity: 0 }}
+      />
+
       <AjustarVisao pontos={escolas} />
       <CentralizarEscola escola={escolaParaCentralizar} />
+
       {escolas.map((escola) => (
         <Marker
           key={escola.id}
@@ -54,7 +69,7 @@ function MapaInterativo({ escolaSelecionadaId, onSelecionar, escolaParaCentraliz
           eventHandlers={{ click: () => onSelecionar(escola) }}
         >
           <Popup>
-            <strong>{escola.nome}</strong><br />{escola.estado} — {escola.regiao}
+            <strong>{escola.nome}</strong><br />{escola.cidade} — {escola.regiao}
           </Popup>
         </Marker>
       ))}

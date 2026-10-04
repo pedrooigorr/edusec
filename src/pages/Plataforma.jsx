@@ -62,8 +62,8 @@ function Plataforma() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
   <div>
-    <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Mapa da Proteção Digital Escolar</h1>
-    <p className="text-white/80">Clique em uma escola no mapa para ver seu índice de segurança, diagnóstico e enviar feedback.</p>
+    <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Mapa da Proteção Digital Escolar do Ceará</h1>
+<p className="text-white/80">Clique em uma escola no mapa para ver seu índice de segurança, diagnóstico e enviar feedback.</p>
   </div>
   <span className="text-xs font-semibold uppercase tracking-wide bg-white/10 border border-white/20 rounded-full px-4 py-2">
     Acessando como: {nomePerfil[perfil]}

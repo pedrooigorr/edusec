@@ -15,10 +15,10 @@ function BuscaEscola({ onSelecionar }) {
   const containerRef = useRef(null);
 
   const escolasFiltradas = escolas.filter((e) =>
-    e.nome.toLowerCase().includes(termo.toLowerCase()) ||
-    e.regiao.toLowerCase().includes(termo.toLowerCase()) ||
-    e.estado.toLowerCase().includes(termo.toLowerCase())
-  );
+  e.nome.toLowerCase().includes(termo.toLowerCase()) ||
+  e.cidade.toLowerCase().includes(termo.toLowerCase()) ||
+  e.regiao.toLowerCase().includes(termo.toLowerCase())
+);
 
   useEffect(() => {
     function fecharAoClicarFora(e) {
@@ -78,7 +78,7 @@ function BuscaEscola({ onSelecionar }) {
                   <MapPin className="text-slate-400 shrink-0" size={16} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-brand-navy truncate">{escola.nome}</p>
-                    <p className="text-xs text-slate-500">{escola.estado} — {escola.regiao}</p>
+                    <p className="text-xs text-slate-500">{escola.cidade} — {escola.regiao}</p>
                   </div>
                   <span className="shrink-0 text-[10px] font-bold uppercase rounded-full px-2 py-1" style={{ backgroundColor: selo.cor, color: "#1E293B" }}>
                     {selo.nome}

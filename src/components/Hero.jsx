@@ -68,14 +68,15 @@ function Hero() {
           <span className="inline-flex items-center rounded-full border-2 border-brand-gold px-5 py-2 text-sm md:text-base font-bold uppercase tracking-wide text-brand-gold mb-8">Proteção Integral · Hackathon TeenTech</span>
 
           <h1 className="font-display text-4xl md:text-5xl font-extrabold leading-[1.05] mb-6 lg:whitespace-nowrap">
-            Um retrato vivo da<br />
-            <span className="text-green-500">segurança digital</span><br />
-            nas escolas brasileiras
-          </h1>
+  Um retrato vivo da<br />
+  <span className="text-green-500">segurança digital</span><br />
+  nas escolas do Ceará
+</h1>
 
           <p className="text-lg text-white/90 leading-relaxed max-w-lg mb-10">
-            O EduSec mede, certifica e conecta o clima de proteção digital de escolas em todo o Brasil, para que famílias e gestores públicos saibam exatamente onde agir.
-          </p>
+  O EduSec mede, certifica e conecta o clima de proteção digital das escolas públicas
+  do Ceará, para que famílias e gestores públicos saibam exatamente onde agir.
+</p>
 
           <div className="flex flex-wrap gap-4">
             <Link to="/plataforma" className="inline-flex items-center gap-3 rounded-full bg-brand-gold px-8 py-4 font-bold uppercase text-brand-navy hover:brightness-95 transition">Explorar o mapa<IconeSeta /></Link>
