@@ -19,7 +19,7 @@ function IconeAcessibilidade(props) {
 
 function IconeEnviar(props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" {...props}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" {...props}>
       <path d="M22 2 11 13" />
       <path d="M22 2 15 22l-4-9-9-4 20-7Z" />
     </svg>
@@ -56,40 +56,40 @@ function Header() {
     <header className="sticky top-0 z-50 bg-white">
       <div className="h-0.5 bg-brand-gold" />
 
-      <div className="max-w-7xl mx-auto px-6 h-28 flex items-center justify-between">
-        <Link to="/" className="flex items-center"><img src="/logo-edusec.png" alt="EduSec" className="h-24 w-auto" /></Link>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link to="/" className="flex items-center"><img src="/logo-edusec.png" alt="EduSec" className="h-14 w-auto" /></Link>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <Link key={link.to} to={link.to} className={ativo === link.id ? "text-lg font-semibold pb-1.5 border-b-[3px] transition-all duration-200 hover:scale-105 text-brand-green border-brand-green" : "text-lg font-semibold pb-1.5 border-b-[3px] transition-all duration-200 hover:scale-105 text-[#0B2F7A] border-transparent hover:text-brand-green hover:border-brand-green"}>{link.label}</Link>
+            <Link key={link.to} to={link.to} className={ativo === link.id ? "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-brand-green border-brand-green" : "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-[#0B2F7A] border-transparent hover:text-brand-green hover:border-brand-green"}>{link.label}</Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <span className="hidden md:block h-10 w-px bg-slate-300" />
+        <div className="flex items-center gap-3">
+          <span className="hidden md:block h-8 w-px bg-slate-300" />
 
-          <button className="hidden md:inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#0B2F7A] hover:bg-brand-blue transition-colors" aria-label="Opções de acessibilidade">
-            <IconeAcessibilidade />
+          <button className="hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#0B2F7A] hover:bg-brand-blue transition-colors" aria-label="Opções de acessibilidade">
+            <IconeAcessibilidade width={18} height={18} />
           </button>
 
-          <Link to="/plataforma" className="hidden md:inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 text-base font-semibold text-white hover:bg-emerald-700 transition-colors"><IconeEnviar />Responder feedback</Link>
+          <Link to="/plataforma" className="hidden md:inline-flex items-center gap-2 rounded-lg bg-brand-green px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 transition-colors"><IconeEnviar />Responder feedback</Link>
 
           <button className="md:hidden text-brand-ink" onClick={() => setAberto(!aberto)} aria-label="Abrir menu" aria-expanded={aberto}>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </div>
 
-      <div className="h-[3px] bg-brand-gold" />
+      <div className="h-0.5 bg-brand-gold" />
 
       {aberto && (
         <nav className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-4">
           {links.map((link) => (
-            <Link key={link.to} to={link.to} onClick={() => setAberto(false)} className="text-lg font-semibold text-[#0B2F7A]">{link.label}</Link>
+            <Link key={link.to} to={link.to} onClick={() => setAberto(false)} className="text-base font-semibold text-[#0B2F7A]">{link.label}</Link>
           ))}
-          <Link to="/plataforma" onClick={() => setAberto(false)} className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-green px-5 py-3 text-base font-semibold text-white"><IconeEnviar />Responder feedback</Link>
+          <Link to="/plataforma" onClick={() => setAberto(false)} className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-green px-5 py-2.5 text-sm font-semibold text-white"><IconeEnviar />Responder feedback</Link>
         </nav>
       )}
     </header>
