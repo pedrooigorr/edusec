@@ -30,11 +30,22 @@ function AjustarVisao({ pontos }) {
   return null;
 }
 
-function MapaInterativo({ escolaSelecionadaId, onSelecionar }) {
+function CentralizarEscola({ escola }) {
+  const map = useMap();
+  useEffect(() => {
+    if (escola) {
+      map.flyTo([escola.lat, escola.lng], 8, { duration: 0.8 });
+    }
+  }, [escola, map]);
+  return null;
+}
+
+function MapaInterativo({ escolaSelecionadaId, onSelecionar, escolaParaCentralizar }) {
   return (
     <MapContainer center={[-14.235, -51.9253]} zoom={4} style={{ height: "100%", width: "100%", minHeight: "480px" }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
       <AjustarVisao pontos={escolas} />
+      <CentralizarEscola escola={escolaParaCentralizar} />
       {escolas.map((escola) => (
         <Marker
           key={escola.id}

@@ -1,3 +1,4 @@
+import BuscaEscola from "../components/BuscaEscola";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
@@ -74,9 +75,16 @@ function Plataforma() {
 </div>
 
           <div className="grid lg:grid-cols-[1.4fr_1fr] gap-6 items-stretch">
-            <div className="rounded-2xl overflow-hidden border border-white/20 shadow-lg h-[480px] lg:h-[560px]">
-              <MapaInterativo escolaSelecionadaId={escolaSelecionada?.id} onSelecionar={setEscolaSelecionada} />
-            </div>
+  <div>
+    <BuscaEscola onSelecionar={setEscolaSelecionada} />
+    <div className="rounded-2xl overflow-hidden border border-white/20 shadow-lg h-[480px] lg:h-[516px]">
+      <MapaInterativo
+        escolaSelecionadaId={escolaSelecionada?.id}
+        onSelecionar={setEscolaSelecionada}
+        escolaParaCentralizar={escolaSelecionada}
+      />
+    </div>
+  </div>
 
             <div className="lg:h-[560px]">
               {escolaSelecionada ? (
