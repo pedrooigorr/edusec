@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Search, X, MapPin } from "lucide-react";
+import { Search, X, MapPin, ArrowRight } from "lucide-react";
 import { escolas } from "../data/escolas";
 
 const configSelo = {
@@ -43,23 +43,31 @@ function BuscaEscola({ onSelecionar }) {
 
   return (
     <div ref={containerRef} className="relative mb-4">
-      <div className="relative rounded-xl overflow-hidden">
-        <div className="absolute left-0 top-0 h-full w-1.5 bg-brand-blue" />
-        <div className="absolute right-0 top-0 h-full w-1.5 bg-brand-gold" />
-        <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/70" size={18} />
-        <input
-          type="text"
-          value={termo}
-          onChange={(e) => { setTermo(e.target.value); setAberto(true); }}
-          onFocus={() => setAberto(true)}
-          placeholder="Buscar escola por nome, região ou estado..."
-          className="w-full bg-brand-green/90 pl-12 pr-10 py-3.5 text-sm text-white placeholder:text-white/75 focus:outline-none focus:ring-2 focus:ring-brand-gold"
-        />
-        {termo && (
-          <button onClick={limpar} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white" aria-label="Limpar busca">
-            <X size={16} />
-          </button>
-        )}
+           <div className="relative flex items-stretch rounded-xl overflow-hidden shadow-md">
+        <div className="relative flex-1">
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+          <input
+            type="text"
+            value={termo}
+            onChange={(e) => { setTermo(e.target.value); setAberto(true); }}
+            onFocus={() => setAberto(true)}
+            placeholder="Buscar escola por nome, região ou estado..."
+            className="w-full bg-white pl-12 pr-10 py-3.5 text-sm text-brand-navy placeholder:text-slate-400 focus:outline-none"
+          />
+          {termo && (
+            <button onClick={limpar} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="Limpar busca">
+              <X size={16} />
+            </button>
+          )}
+        </div>
+        <button
+          type="button"
+          onClick={() => { if (escolasFiltradas[0]) selecionarEscola(escolasFiltradas[0]); }}
+          className="flex items-center justify-center px-5 bg-brand-green hover:bg-emerald-700 transition-colors"
+          aria-label="Buscar"
+        >
+          <ArrowRight className="text-white" size={20} />
+        </button>
       </div>
 
       {aberto && (

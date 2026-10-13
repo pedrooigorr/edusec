@@ -25,10 +25,9 @@ function PainelResumoEscola({ escola, indice, onFechar }) {
       <h3 className="font-display text-xl md:text-2xl font-bold text-brand-navy uppercase">{escola.nome}</h3>
       <p className="text-sm text-brand-muted mt-1 mb-8">{escola.cidade} — {escola.regiao}</p>
 
-      <GaugeIndice valor={indice} tamanho={160} />
-      <GaugeIndice valor={indice} tamanho={160} />
-<p className="text-xs uppercase tracking-wide text-brand-muted mt-2 mb-1 font-semibold">Índice de Segurança</p>
-<p className="text-[11px] text-slate-400 mb-8">Dados simulados para demonstração</p>
+      <GaugeIndice valor={indice} tamanho={190} />
+      <p className="text-sm uppercase tracking-wide text-brand-muted mt-3 mb-1 font-bold">Índice de Segurança</p>
+      <p className="text-[11px] text-slate-400 mb-8">Dados simulados para demonstração</p>
 
       <img src={imagemSelo[escola.nivel]} alt={`Selo ${nomeSelo[escola.nivel]}`} className="w-32 h-32 object-contain" />
       <p className="font-display font-bold text-brand-navy mt-2 text-lg">{nomeSelo[escola.nivel]}</p>

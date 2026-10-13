@@ -12,7 +12,7 @@ function Cabecalho() {
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pr-10">
       <div className="flex items-center gap-4">
-        <img src="/logo-edusec.png" alt="EduSec" className="h-12 w-auto" />
+        <img src="/marca-edusec.png" alt="EduSec" className="h-20 w-auto" />
         <span className="w-px h-10 bg-brand-navy/20" />
         <div>
           <p className="font-display text-xl font-extrabold text-brand-navy leading-none">FEEDBACK</p>

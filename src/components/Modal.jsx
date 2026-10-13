@@ -1,6 +1,21 @@
 import { useEffect } from "react";
 import { X } from "lucide-react";
 
+function DecoracaoModal() {
+  return (
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 1000" preserveAspectRatio="none" aria-hidden="true">
+      <polygon points="0,0 220,0 0,300" fill="#0E8F4F" opacity="0.5" />
+      <polygon points="0,0 120,0 0,170" fill="#0B2545" opacity="0.6" />
+      <polygon points="800,0 620,0 800,260" fill="#0E8F4F" opacity="0.4" />
+      <path d="M800 0 L800 90 L720 0 Z" fill="#0B2545" opacity="0.55" />
+      <polygon points="0,1000 0,760 230,1000" fill="#0B2545" opacity="0.55" />
+      <polygon points="0,1000 0,860 130,1000" fill="#0E8F4F" opacity="0.45" />
+      <polygon points="800,1000 800,740 560,1000" fill="#0E8F4F" opacity="0.45" />
+      <polygon points="800,1000 800,870 680,1000" fill="#0B2545" opacity="0.55" />
+    </svg>
+  );
+}
+
 function Modal({ aberto, onFechar, children }) {
   useEffect(() => {
     if (aberto) {
@@ -25,10 +40,7 @@ function Modal({ aberto, onFechar, children }) {
         className="relative w-full max-w-3xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden"
         style={{ backgroundColor: "#FBC913" }}
       >
-        <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-brand-green/60 pointer-events-none" />
-        <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-brand-green/50 pointer-events-none" />
-        <div className="absolute -bottom-20 -left-12 w-64 h-64 rounded-full bg-brand-navy/90 pointer-events-none" />
-        <div className="absolute -bottom-16 -right-16 w-48 h-48 rounded-full bg-brand-navy/80 pointer-events-none" />
+        <DecoracaoModal />
 
         <button
           onClick={onFechar}
