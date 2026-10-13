@@ -7,9 +7,10 @@ import GraficoPizzaRisco from "./GraficoPizzaRisco";
 import AlertasDiagnostico from "./AlertasDiagnostico";
 import PlanoDeAcao from "./PlanoDeAcao";
 import FormularioFeedback from "./FormularioFeedback";
+import Modal from "./Modal";
 
 function PainelDadosEscola({ escola, medias, distribuicaoRisco, alertas }) {
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
   const { podeResponderFeedback } = useAuth();
 
   return (
@@ -64,17 +65,17 @@ function PainelDadosEscola({ escola, medias, distribuicaoRisco, alertas }) {
             Entrar como aluno ou professor
           </Link>
         </div>
-      ) : !mostrarFormulario ? (
+      ) : (
         <div className="flex justify-center">
-          <button onClick={() => setMostrarFormulario(true)} className="inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 text-base font-semibold text-white hover:bg-emerald-700 transition-colors">
+          <button onClick={() => setModalAberto(true)} className="inline-flex items-center gap-2 rounded-xl bg-brand-green px-6 py-3 text-base font-semibold text-white hover:bg-emerald-700 transition-colors">
             <MessageSquarePlus size={18} />Responder feedback
           </button>
         </div>
-      ) : (
-        <div className="border-t border-slate-200 pt-8">
-          <FormularioFeedback escolaFixa={escola.nome} />
-        </div>
       )}
+
+      <Modal aberto={modalAberto} onFechar={() => setModalAberto(false)}>
+        <FormularioFeedback escolaFixa={escola.nome} />
+      </Modal>
     </div>
   );
 }
