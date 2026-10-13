@@ -72,19 +72,10 @@ function IconeInstagram(props) {
   );
 }
 
-function IconeLinkedin(props) {
+function IconeGithub(props) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
-      <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.1 3.77-2.1 4 0 4.4 2.6 4.4 6V21h-4v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z" />
-    </svg>
-  );
-}
-
-function IconeYoutube(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
-      <path d="M22 12s0-3.2-.4-4.7a3 3 0 0 0-2.1-2.1C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.5.4A3 3 0 0 0 2.4 7.3C2 8.8 2 12 2 12s0 3.2.4 4.7a3 3 0 0 0 2.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 0 0 2.1-2.1C22 15.2 22 12 22 12Z" />
-      <path fill="#0a2a72" d="m10 15 5.2-3L10 9Z" />
+      <path d="M12 2C6.48 2 2 6.58 2 12.17c0 4.47 2.87 8.26 6.84 9.6.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.61-3.37-1.21-3.37-1.21-.46-1.17-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.04 1.53 1.04.89 1.54 2.34 1.1 2.91.84.09-.65.35-1.1.63-1.35-2.22-.26-4.56-1.13-4.56-5.02 0-1.11.39-2.02 1.03-2.73-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.04A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.31 2.75-1.04 2.75-1.04.55 1.41.2 2.45.1 2.71.64.71 1.03 1.62 1.03 2.73 0 3.9-2.34 4.76-4.57 5.01.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.17C22 6.58 17.52 2 12 2Z" />
     </svg>
   );
 }
@@ -103,6 +94,11 @@ const sobre = [
   { href: "#", label: "Hackathon TeenTech", Icone: IconeDocumento },
   { href: "#", label: "Documentação", Icone: IconeLivro },
   { href: "#", label: "Contato", Icone: IconeEnvelope },
+];
+
+const redesSociais = [
+  { href: "https://www.instagram.com/pedrooigor._/", label: "Instagram", Icone: IconeInstagram },
+  { href: "https://github.com/pedrooigorr", label: "GitHub", Icone: IconeGithub },
 ];
 
 function Footer() {
@@ -157,9 +153,11 @@ function Footer() {
               <p className="text-brand-gold font-bold text-sm tracking-wide mb-2">SIGA-NOS</p>
               <div className="w-8 h-[2px] bg-brand-gold mb-3" />
               <div className="flex gap-2.5">
-                <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-lg border border-white/40 flex items-center justify-center hover:border-green-400 hover:text-green-400 transition-colors"><IconeInstagram /></a>
-                <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-lg border border-white/40 flex items-center justify-center hover:border-green-400 hover:text-green-400 transition-colors"><IconeLinkedin /></a>
-                <a href="#" aria-label="YouTube" className="w-9 h-9 rounded-lg border border-white/40 flex items-center justify-center hover:border-green-400 hover:text-green-400 transition-colors"><IconeYoutube /></a>
+                {redesSociais.map(({ href, label, Icone }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="w-9 h-9 rounded-lg border border-white/40 flex items-center justify-center hover:border-green-400 hover:text-green-400 transition-colors">
+                    <Icone />
+                  </a>
+                ))}
               </div>
             </div>
           </div>

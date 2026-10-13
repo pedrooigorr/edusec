@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const links = [
+const linksRota = [
   { to: "/", id: "topo", label: "Início" },
   { to: "/plataforma", id: "mapa", label: "Mapa" },
-  { to: "/#termometro", id: "termometro", label: "Termômetro" },
 ];
 
-const secoesObservadas = ["topo", "mapa", "termometro"];
+const linksAncora = [
+  { id: "termometro", label: "Termômetro" },
+  { id: "selos", label: "Selos" },
+];
+
+const linkFeedback = { to: "/plataforma", id: "feedback", label: "Feedback" };
+
+const secoesObservadas = ["topo", "mapa", "termometro", "selos"];
 
 function IconeAcessibilidade(props) {
   return (
@@ -28,8 +34,19 @@ function IconeEnviar(props) {
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [aberto, setAberto] = useState(false);
   const [ativo, setAtivo] = useState("topo");
+
+  function irParaAncora(id) {
+    setAberto(false);
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+      return;
+    }
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.scrollIntoView({ behavior: "smooth" });
+  }
 
   useEffect(() => {
     if (location.pathname === "/plataforma") {
@@ -52,17 +69,27 @@ function Header() {
     return () => observer.disconnect();
   }, [location.pathname]);
 
+  function classeLink(id) {
+    return ativo === id
+      ? "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-brand-green border-brand-green"
+      : "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-[#0B2F7A] border-transparent hover:text-brand-green hover:border-brand-green";
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-white">
       <div className="h-0.5 bg-brand-gold" />
 
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center"><img src="/logo-edusec.png" alt="EduSec" className="h-14 w-auto" /></Link>
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <Link to="/" className="flex items-center"><img src="/logo-edusec.png" alt="EduSec" className="h-18 w-auto" /></Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <Link key={link.to} to={link.to} className={ativo === link.id ? "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-brand-green border-brand-green" : "text-sm font-semibold pb-1 border-b-2 transition-all duration-200 hover:scale-105 text-[#0B2F7A] border-transparent hover:text-brand-green hover:border-brand-green"}>{link.label}</Link>
+          {linksRota.map((link) => (
+            <Link key={link.to} to={link.to} className={classeLink(link.id)}>{link.label}</Link>
           ))}
+          {linksAncora.map((link) => (
+            <button key={link.id} onClick={() => irParaAncora(link.id)} className={classeLink(link.id)}>{link.label}</button>
+          ))}
+          <Link to={linkFeedback.to} className={classeLink(linkFeedback.id)}>{linkFeedback.label}</Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -86,9 +113,13 @@ function Header() {
 
       {aberto && (
         <nav className="md:hidden border-t border-slate-200 bg-white px-6 py-4 flex flex-col gap-4">
-          {links.map((link) => (
+          {linksRota.map((link) => (
             <Link key={link.to} to={link.to} onClick={() => setAberto(false)} className="text-base font-semibold text-[#0B2F7A]">{link.label}</Link>
           ))}
+          {linksAncora.map((link) => (
+            <button key={link.id} onClick={() => irParaAncora(link.id)} className="text-base font-semibold text-[#0B2F7A] text-left">{link.label}</button>
+          ))}
+          <Link to={linkFeedback.to} onClick={() => setAberto(false)} className="text-base font-semibold text-[#0B2F7A]">{linkFeedback.label}</Link>
           <Link to="/plataforma" onClick={() => setAberto(false)} className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-green px-5 py-2.5 text-sm font-semibold text-white"><IconeEnviar />Responder feedback</Link>
         </nav>
       )}
