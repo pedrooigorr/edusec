@@ -9,6 +9,7 @@ import PainelDadosEscola from "../components/PainelDadosEscola";
 import BuscaEscola from "../components/BuscaEscola";
 import LegendaMapa from "../components/LegendaMapa";
 import AvisoDadosSimulados from "../components/AvisoDadosSimulados";
+import SeletorPerfil from "../components/SeletorPerfil";
 import { escolas } from "../data/escolas";
 import { respostasSeedPorEscola } from "../data/respostasSeed";
 import { calcularMediasPorCategoria, calcularIndiceGeral, calcularDistribuicaoRisco, gerarAlertas } from "../utils/indiceSeguranca";
@@ -74,9 +75,12 @@ function Plataforma() {
       <section className="relative overflow-hidden text-white bg-gradient-to-br from-[#031339] via-[#0a2a72] to-[#0d47a1] py-16">
         <FundoAzulTopo />
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="mb-6">
-            <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Mapa da Proteção Digital Escolar do Ceará</h1>
-            <p className="text-white/80">Clique em uma escola no mapa para ver seu índice de segurança, diagnóstico e enviar feedback.</p>
+          <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+            <div>
+              <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">Mapa da Proteção Digital Escolar do Ceará</h1>
+              <p className="text-white/80">Clique em uma escola no mapa para ver seu índice de segurança, diagnóstico e enviar feedback.</p>
+            </div>
+            <SeletorPerfil />
           </div>
 
           <div className="mb-6">
