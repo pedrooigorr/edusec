@@ -43,3 +43,45 @@ h1, h2, h3, h4 {
     animation: none !important;
   }
 }
+
+/* Acessibilidade */
+html.a11y-texto-media {
+  font-size: 112%;
+}
+html.a11y-texto-grande {
+  font-size: 125%;
+}
+
+html.a11y-espacado body {
+  letter-spacing: 0.03em;
+  line-height: 1.75;
+}
+html.a11y-espacado p,
+html.a11y-espacado li {
+  margin-bottom: 0.6em;
+}
+
+html.a11y-alto-contraste body {
+  background-color: #ffffff;
+  color: #000000;
+}
+html.a11y-alto-contraste a {
+  text-decoration: underline;
+}
+html.a11y-alto-contraste button,
+html.a11y-alto-contraste input,
+html.a11y-alto-contraste select {
+  border-width: 2px !important;
+  border-color: #000000 !important;
+}
+html.a11y-alto-contraste :focus-visible {
+  outline: 3px solid #000000;
+  outline-offset: 2px;
+}
+
+html.a11y-sem-animacao *,
+html.a11y-sem-animacao *::before,
+html.a11y-sem-animacao *::after {
+  transition: none !important;
+  animation: none !important;
+}
