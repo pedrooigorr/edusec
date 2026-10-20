@@ -36,9 +36,9 @@ function Login() {
   const navigate = useNavigate();
   const { setPerfil } = useAuth();
 
-  function entrar(id) {
+function entrar(id) {
     setPerfil(id);
-    navigate("/plataforma");
+    navigate(id === "gestor" ? "/gestor" : "/plataforma");
   }
 
   return (
