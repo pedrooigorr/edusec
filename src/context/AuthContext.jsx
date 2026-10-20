@@ -19,9 +19,10 @@ export function AuthProvider({ children }) {
   }
 
   const podeResponderFeedback = perfil === "aluno" || perfil === "professor";
+  const ehGestor = perfil === "gestor";
 
   return (
-    <AuthContext.Provider value={{ perfil, setPerfil, podeResponderFeedback }}>
+    <AuthContext.Provider value={{ perfil, setPerfil, podeResponderFeedback, ehGestor }}>
       {children}
     </AuthContext.Provider>
   );

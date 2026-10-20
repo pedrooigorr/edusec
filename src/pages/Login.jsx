@@ -29,6 +29,7 @@ const opcoes = [
   { id: "visitante", titulo: "Visitante", descricao: "Visualize o mapa, os índices e os dados das escolas. Sem enviar feedback.", Icone: Eye, cor: "bg-slate-600 group-hover:bg-slate-700" },
   { id: "aluno", titulo: "Aluno Online", descricao: "Acesse com seu perfil de aluno. Veja os dados e envie feedback da sua escola.", Icone: GraduationCap, cor: "bg-brand-green group-hover:bg-emerald-700" },
   { id: "professor", titulo: "Professor Online", descricao: "Acesse com seu perfil de professor. Veja os dados e envie feedback da sua escola.", Icone: BookOpen, cor: "bg-brand-blue group-hover:bg-blue-800" },
+  { id: "gestor", titulo: "Gestor Público", descricao: "Acesso para gestores, conselhos e representantes públicos. Veja a rede inteira de escolas, com indicadores agregados e ranking.", Icone: Landmark, cor: "bg-amber-600 group-hover:bg-amber-700" },
 ];
 
 function Login() {
@@ -50,7 +51,7 @@ function Login() {
           <div className="text-center mb-12">
             <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">Como você quer acessar o EduSec?</h1>
             <p className="text-white/80 max-w-xl mx-auto">
-              Escolha seu perfil para continuar. Essa seleção define se você pode apenas visualizar os dados ou também enviar feedback.
+              Escolha seu perfil para continuar. Essa seleção define quais dados e funcionalidades você pode acessar.
             </p>
           </div>
 
@@ -68,14 +69,6 @@ function Login() {
                 <p className="text-sm text-white/75 leading-relaxed">{opcao.descricao}</p>
               </button>
             ))}
-
-            <div className="bg-white/5 border border-dashed border-white/20 rounded-2xl p-6 text-left opacity-60 cursor-not-allowed">
-              <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-slate-500 mb-4">
-                <Landmark className="text-white" size={26} />
-              </span>
-              <h3 className="font-display text-lg font-bold mb-2">Gestor Público</h3>
-              <p className="text-sm text-white/75 leading-relaxed">Em breve: acesso dedicado para gestores e representantes públicos de educação.</p>
-            </div>
           </div>
 
           <p className="text-center text-xs text-white/50 mt-10">

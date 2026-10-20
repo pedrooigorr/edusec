@@ -6,7 +6,7 @@ const opcoes = [
   { id: "visitante", nome: "Visitante", Icone: Eye },
   { id: "aluno", nome: "Aluno", Icone: GraduationCap },
   { id: "professor", nome: "Professor", Icone: BookOpen },
-  { id: "gestor", nome: "Gestor Público", Icone: Landmark, desabilitado: true },
+  { id: "gestor", nome: "Gestor Público", Icone: Landmark },
 ];
 
 function SeletorPerfil() {
@@ -45,16 +45,11 @@ function SeletorPerfil() {
           {opcoes.map((opcao) => (
             <button
               key={opcao.id}
-              disabled={opcao.desabilitado}
               onClick={() => { setPerfil(opcao.id); setAberto(false); }}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left transition-colors ${
-                opcao.desabilitado
-                  ? "text-slate-300 cursor-not-allowed"
-                  : "text-brand-navy hover:bg-slate-50"
-              }`}
+              className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left text-brand-navy hover:bg-slate-50 transition-colors"
             >
-              <opcao.Icone size={16} className={opcao.desabilitado ? "text-slate-300" : "text-brand-blue"} />
-              <span className="flex-1">{opcao.nome}{opcao.desabilitado && " (em breve)"}</span>
+              <opcao.Icone size={16} className="text-brand-blue" />
+              <span className="flex-1">{opcao.nome}</span>
               {perfil === opcao.id && <Check size={16} className="text-brand-green" />}
             </button>
           ))}
