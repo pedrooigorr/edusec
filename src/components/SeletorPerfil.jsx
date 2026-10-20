@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Eye, GraduationCap, BookOpen, Landmark, ChevronDown, Check } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
@@ -11,6 +12,8 @@ const opcoes = [
 
 function SeletorPerfil() {
   const { perfil, setPerfil } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [aberto, setAberto] = useState(false);
   const containerRef = useRef(null);
 
@@ -25,6 +28,19 @@ function SeletorPerfil() {
     document.addEventListener("mousedown", fecharAoClicarFora);
     return () => document.removeEventListener("mousedown", fecharAoClicarFora);
   }, []);
+
+  function escolherPerfil(id) {
+    setPerfil(id);
+    setAberto(false);
+
+    if (id === "gestor") {
+      navigate("/gestor");
+      return;
+    }
+    if (location.pathname === "/gestor") {
+      navigate("/plataforma");
+    }
+  }
 
   return (
     <div ref={containerRef} className="relative">
@@ -45,7 +61,7 @@ function SeletorPerfil() {
           {opcoes.map((opcao) => (
             <button
               key={opcao.id}
-              onClick={() => { setPerfil(opcao.id); setAberto(false); }}
+              onClick={() => escolherPerfil(opcao.id)}
               className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left text-brand-navy hover:bg-slate-50 transition-colors"
             >
               <opcao.Icone size={16} className="text-brand-blue" />
