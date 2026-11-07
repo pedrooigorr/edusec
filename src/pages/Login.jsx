@@ -29,7 +29,7 @@ const opcoes = [
   { id: "visitante", titulo: "Visitante", descricao: "Visualize o mapa, os índices e os dados das escolas. Sem enviar feedback.", Icone: Eye, cor: "bg-slate-600 group-hover:bg-slate-700" },
   { id: "aluno", titulo: "Aluno Online", descricao: "Acesse com seu perfil de aluno. Veja os dados e envie feedback da sua escola.", Icone: GraduationCap, cor: "bg-brand-green group-hover:bg-emerald-700" },
   { id: "professor", titulo: "Professor Online", descricao: "Acesse com seu perfil de professor. Veja os dados e envie feedback da sua escola.", Icone: BookOpen, cor: "bg-brand-blue group-hover:bg-blue-800" },
-  { id: "gestor", titulo: "Gestor Público", descricao: "Acesso para gestores, conselhos e representantes públicos. Veja a rede inteira de escolas, com indicadores agregados e ranking.", Icone: Landmark, cor: "bg-amber-600 group-hover:bg-amber-700" },
+  { id: "gestor", titulo: "Gestor Público", descricao: "Acesso para gestores, conselhos e representantes públicos. Veja todas as escolas do estado, com indicadores agregados e ranking..", Icone: Landmark, cor: "bg-amber-600 group-hover:bg-amber-700" },
 ];
 
 function Login() {

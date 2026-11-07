@@ -4,7 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 ChartJS.register(ArcElement, Tooltip);
 
 const nomeSelo = { ouro: "Ouro", prata: "Prata", bronze: "Bronze", em_progresso: "Em progresso" };
-const corSelo = { ouro: "#F5C451", prata: "#3B82F6", bronze: "#B08968", em_progresso: "#CBD5E1" };
+const corSelo = { ouro: "#F5C451", prata: "#94A3B8", bronze: "#B08968", em_progresso: "#3B82F6" };
 
 function GraficoDistribuicaoSeloDonut({ distribuicao, total }) {
   const chaves = Object.keys(nomeSelo);

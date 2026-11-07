@@ -14,6 +14,7 @@ import AvisoDadosSimulados from "../components/AvisoDadosSimulados";
 import { School, Gauge, AlertTriangle, Trophy, ChevronRight } from "lucide-react";
 import { escolas } from "../data/escolas";
 import { calcularResumoRede } from "../utils/indicadoresRede";
+import { gerarNotificacoes } from "../utils/notificacoesGestor";
 
 function CartaoKpi({ Icone, label, valor, tendencia, cor, fundo }) {
   return (
@@ -64,6 +65,7 @@ function GestorVisaoGeral() {
   const resumoRede = calcularResumoRede(escolas, respostasLivePorEscola);
   const { indiceMedio, distribuicaoSelo, mediaPorCategoria, totalAlertas, mediaPorRegiao, ranking } = resumoRede;
   const melhorEscola = ranking[0];
+  const notificacoes = gerarNotificacoes(resumoRede);
 
   function irParaEscola(escola) {
     navigate("/plataforma", { state: { escolaId: escola.id } });
@@ -74,23 +76,27 @@ function GestorVisaoGeral() {
       <GestorSidebar />
 
       <div className="flex-1 flex flex-col">
-        <GestorTopbar titulo="Visão Geral da Rede" subtitulo="Acompanhe os dados de segurança digital de toda a rede escolar." />
+        <GestorTopbar
+          titulo="Visão Geral do Estado"
+          subtitulo="Acompanhe os dados de segurança digital das escolas de todo o estado."
+          notificacoes={notificacoes}
+        />
 
         <main className="flex-1 px-8 py-6 space-y-6">
           <AvisoDadosSimulados />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <CartaoKpi Icone={School} label="Escolas monitoradas" valor={ranking.length} tendencia={`${escolas.length} cadastradas na rede`} cor="bg-brand-blue" fundo="bg-blue-50/60 border-blue-100" />
-            <CartaoKpi Icone={Gauge} label="Índice médio da rede" valor={`${indiceMedio}%`} tendencia="Baseado nos dados atuais" cor="bg-brand-green" fundo="bg-green-50/60 border-green-100" />
-            <CartaoKpi Icone={AlertTriangle} label="Alertas ativos na rede" valor={totalAlertas} tendencia="Categorias abaixo do recomendado" cor="bg-red-500" fundo="bg-red-50/60 border-red-100" />
+            <CartaoKpi Icone={School} label="Escolas monitoradas" valor={ranking.length} tendencia={`${escolas.length} cadastradas no estado`} cor="bg-brand-blue" fundo="bg-blue-50/60 border-blue-100" />
+            <CartaoKpi Icone={Gauge} label="Índice médio do estado" valor={`${indiceMedio}%`} tendencia="Baseado nos dados atuais" cor="bg-brand-green" fundo="bg-green-50/60 border-green-100" />
+            <CartaoKpi Icone={AlertTriangle} label="Alertas ativos no estado" valor={totalAlertas} tendencia="Categorias abaixo do recomendado" cor="bg-red-500" fundo="bg-red-50/60 border-red-100" />
             <CartaoKpi Icone={Trophy} label="Melhor índice" valor={melhorEscola ? `${melhorEscola.indice}%` : "—"} tendencia={melhorEscola?.nome} cor="bg-amber-500" fundo="bg-amber-50/60 border-amber-100" />
           </div>
 
           <div className="grid lg:grid-cols-3 gap-5">
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#031339] via-[#0a2a72] to-[#0d47a1] text-white p-6 flex flex-col items-center justify-center text-center">
-              <p className="self-start text-sm font-bold uppercase tracking-wide text-white/80 mb-4">Índice Médio da Rede</p>
-              <GaugeIndice valor={indiceMedio} tamanho={150} />
-              <p className="text-xs text-white/60 mt-4">O índice médio reflete o conjunto das {ranking.length} escolas monitoradas.</p>
+              <p className="self-start text-sm font-bold uppercase tracking-wide text-white mb-4">Índice Médio do Estado</p>
+              <GaugeIndice valor={indiceMedio} tamanho={150} corNumero="#FFFFFF" />
+              <p className="text-xs text-white/70 mt-4">O índice médio reflete o conjunto das {ranking.length} escolas monitoradas.</p>
             </div>
 
             <div className="bg-white rounded-2xl border border-slate-200 p-6">
@@ -100,7 +106,7 @@ function GestorVisaoGeral() {
 
             <div className="bg-white rounded-2xl border border-slate-200 p-6">
               <p className="text-sm font-bold uppercase tracking-wide text-brand-navy mb-1">Comparativo por Categoria</p>
-              <p className="text-xs text-slate-400 mb-4">Média da rede</p>
+              <p className="text-xs text-slate-400 mb-4">Média do estado</p>
               <div className="h-56">
                 <GraficoBarrasCategorias medias={mediaPorCategoria} />
               </div>

@@ -13,8 +13,6 @@ const linksAncora = [
   { id: "selos", label: "Selos" },
 ];
 
-const linkFeedback = { to: "/plataforma", id: "feedback", label: "Feedback" };
-
 const secoesObservadas = ["topo", "mapa", "termometro", "selos"];
 
 function Header() {
@@ -75,7 +73,6 @@ function Header() {
           {linksAncora.map((link) => (
             <button key={link.id} onClick={() => irParaAncora(link.id)} className={classeLink(link.id)}>{link.label}</button>
           ))}
-          <Link to={linkFeedback.to} className={classeLink(linkFeedback.id)}>{linkFeedback.label}</Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -109,7 +106,6 @@ function Header() {
           {linksAncora.map((link) => (
             <button key={link.id} onClick={() => irParaAncora(link.id)} className="text-base font-semibold text-[#0B2F7A] text-left">{link.label}</button>
           ))}
-          <Link to={linkFeedback.to} onClick={() => setAberto(false)} className="text-base font-semibold text-[#0B2F7A]">{linkFeedback.label}</Link>
           <button
             onClick={() => { setPainelAberto(true); setAberto(false); }}
             className="flex items-center gap-2 text-base font-semibold text-[#0B2F7A]"

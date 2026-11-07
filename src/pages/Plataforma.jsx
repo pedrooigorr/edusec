@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { LayoutDashboard } from "lucide-react";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuth } from "../context/AuthContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MapaInterativo from "../components/MapaInterativo";
@@ -39,8 +42,17 @@ function FundoAzulTopo() {
 }
 
 function Plataforma() {
+  const location = useLocation();
+  const { ehGestor } = useAuth();
   const [escolaSelecionada, setEscolaSelecionada] = useState(null);
   const [respostasLive, setRespostasLive] = useState([]);
+
+  useEffect(() => {
+    const id = location.state?.escolaId;
+    if (!id) return;
+    const escola = escolas.find((e) => e.id === id);
+    if (escola) setEscolaSelecionada(escola);
+  }, [location.state]);
 
   useEffect(() => {
     if (!escolaSelecionada) {
@@ -113,6 +125,22 @@ function Plataforma() {
               )}
             </div>
           </div>
+
+          {ehGestor && (
+            <div className="flex justify-center mt-10">
+              <Link
+                to="/gestor"
+                className="group inline-flex items-stretch rounded-full overflow-hidden shadow-lg transition-transform duration-200 hover:-translate-y-1"
+              >
+                <span className="flex items-center bg-brand-gold px-8 py-4 font-display font-extrabold uppercase tracking-wide text-brand-navy">
+                  Painel do gestor
+                </span>
+                <span className="flex items-center bg-brand-green px-5 text-white transition-colors group-hover:bg-emerald-700">
+                  <LayoutDashboard size={22} />
+                </span>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

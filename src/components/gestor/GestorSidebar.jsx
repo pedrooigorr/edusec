@@ -1,12 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Map, FileText, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Map as IconeMapa, House, LogOut } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
 const itens = [
-  { to: "/gestor", label: "Visão Geral da Rede", Icone: LayoutDashboard, ativo: true },
-  { to: "/plataforma", label: "Mapa por Escola", Icone: Map, ativo: true },
-  { to: "/gestor/relatorios", label: "Relatórios", Icone: FileText, ativo: false },
-  { to: "/gestor/configuracoes", label: "Configurações", Icone: Settings, ativo: false },
+  { to: "/gestor", label: "Visão Geral do Estado", Icone: LayoutDashboard },
+  { to: "/plataforma", label: "Mapa por Escola", Icone: IconeMapa },
+  { to: "/", label: "Página inicial", Icone: House },
 ];
 
 function GestorSidebar() {
@@ -32,18 +31,6 @@ function GestorSidebar() {
       <nav className="flex-1 px-4 py-6 space-y-1.5">
         {itens.map((item) => {
           const atual = location.pathname === item.to;
-          if (!item.ativo) {
-            return (
-              <span
-                key={item.to}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-white/35 cursor-not-allowed"
-                title="Em breve"
-              >
-                <item.Icone size={18} />
-                {item.label}
-              </span>
-            );
-          }
           return (
             <Link
               key={item.to}
